@@ -1,0 +1,28 @@
+1. geth --datadir ./validator1 account new
+
+validator1: 0x092A69435a298d01b1A48515E882f521e023Fbd7
+
+3. puppeth
+3.1 network name
+3.2 Configure new genesis
+3.3 Create new genesis from scratch
+3.4 Ethash - proof-of-work
+3.5 Which accounts are allowed to seal?
+3.6 Which accounts should be pre-funded?
+
+chain/network id : 5875844
+
+3.7 Export genesis configurations
+
+4. geth --datadir ./validator1 init genesis.json
+5. 
+6. bootnode --genkey bootnode.key
+7. bootnode --nodekey bootnode.key
+
+enode://6b0df2f44eb8c60152eef2e3e1a104c92451ea18aff88ee315b35a2b3fc0901dd76926623e3fb7652ddbffb98c8f16595859e14a48f099e1443f437add1bdc1e@127.0.0.1:0?discport=30301
+
+8. geth --datadir ./validator1 --port 30302 --http --http.addr 'localhost' --http.port 8545 --http.api 'personal,db,eth,net,web3,txpool,miner' --bootnodes ' ' --networkid 5875844 --allow-insecure-unlock --password ./validator1/password.txt --mine console
+
+ geth attach ipc://./pipe/geth.ipc
+9. unlock account: personal.unlockAccount(eth.accounts[0], "validator1")
+10. mine: miner.start(1)
